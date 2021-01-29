@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { Feature } from '../types';
+import { removeFeatureFromSelectedVehicle } from '../redux/actions';
 
 interface Props {
-  feature: {
-    name: string;
-  };
+  feature: Feature;
 }
 
-const AddedFeature = (props: Props) => {
+const AddedFeature = ({ feature }: Props) => {
+  const dispatch = useDispatch();
+  const handleButtonClick = (e: MouseEvent) => {
+    e.preventDefault();
+    removeFeatureFromSelectedVehicle(dispatch, feature);
+  };
   return (
     <li>
-      {/* Add an onClick to run a function to remove a feature */}
-      <button className="button">X</button>
-      {props.feature.name}
+      <button className="button" onClick={handleButtonClick}>
+        X
+      </button>
+      {feature.name}
     </li>
   );
 };
