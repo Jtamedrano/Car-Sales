@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { addFeatureToSelectedVehicle } from '../redux/actions';
+import { Feature } from '../types';
 
 interface Props {
-  feature: {
-    name: string;
-    price: number;
-  };
+  feature: Feature;
 }
 
-const AdditionalFeature = (props: Props) => {
+const AdditionalFeature = ({ feature }: Props) => {
+  const dispatch = useDispatch();
+
+  const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addFeatureToSelectedVehicle(dispatch, feature);
+  };
+
   return (
     <li>
-      {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button">Add</button>
-      {props.feature.name} (+{props.feature.price})
+      <button className="button" onClick={handleButtonClick}>
+        Add
+      </button>
+      {feature.name} (+{feature.price})
     </li>
   );
 };

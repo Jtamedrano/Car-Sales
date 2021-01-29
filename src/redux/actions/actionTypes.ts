@@ -1,3 +1,4 @@
 export enum ActionTypes {
-  SampleAction,
+  ADD_FEATURE_TO_CAR,
+  REMOVE_FEATURE_FROM_ADDITIONAL_FEATURES,
 }

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Feature } from '../types';
 import AdditionalFeature from './AdditionalFeature';
 
 interface Props {
-  additionalFeatures: any[];
+  additionalFeatures: Feature[];
 }
 
 const AdditionalFeatures = (props: Props) => {

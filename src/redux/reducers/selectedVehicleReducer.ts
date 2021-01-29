@@ -1,4 +1,7 @@
-const initialState = {
+import { SelectedVehicle } from '../../types';
+import { ActionTypes } from '../actions';
+
+const initialState: SelectedVehicle = {
   additionalPrice: 0,
   car: {
     price: 26395,
@@ -17,6 +20,20 @@ const initialState = {
 
 const selectedVehicleReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case ActionTypes.ADD_FEATURE_TO_CAR:
+      if (state.car.features.includes(action.payload)) return state; // CHECKS IF ALREADY IN ADDED FEATURES
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: [...state.car.features, action.payload],
+        },
+      };
+    case ActionTypes.REMOVE_FEATURE_FROM_ADDITIONAL_FEATURES:
+      const additionalFeatures = state.additionalFeatures.filter(
+        (features) => features.id !== action.payload.id
+      );
+      return { ...state, additionalFeatures };
     default:
       return state;
   }

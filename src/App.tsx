@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 interface Props extends SelectedVehicle {}
 
 const App = ({ car, additionalFeatures, additionalPrice }: Props) => {
+  console.log(car);
   return (
     <div className="boxes">
       <div className="box">
