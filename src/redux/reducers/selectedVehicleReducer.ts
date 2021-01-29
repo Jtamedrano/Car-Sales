@@ -50,7 +50,7 @@ const selectedVehicleReducer = (state = initialState, action: any) => {
         ...state,
         additionalPrice: state.car.features
           .map((f) => f.price)
-          .reduce((pV, cV) => pV + cV),
+          .reduce((pV, cV) => pV + cV, 0),
       };
     default:
       return state;
