@@ -1,19 +1,19 @@
-interface Product {
+export interface Product {
   name: string;
   price: number;
 }
 
-interface SelectedVehicle {
-  additionalPrice: number;
-  car: Car;
-  additionalFeatures: Feature[];
-}
-
-interface Feature extends Product {
+export interface Feature extends Product {
   id: number;
 }
 
-interface Car extends Product {
+export interface Car extends Product {
   image: string;
   features: Feature[];
+}
+
+export interface SelectedVehicle {
+  additionalPrice: number;
+  car: Car;
+  additionalFeatures: Feature[];
 }

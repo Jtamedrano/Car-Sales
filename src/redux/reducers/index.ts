@@ -1,3 +1,4 @@
 import { combineReducers } from 'redux';
+import selectedVehicle from './selectedVehicleReducer';
 
-export default combineReducers({});
+export default combineReducers({ selectedVehicle });
