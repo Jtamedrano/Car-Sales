@@ -1,6 +1,13 @@
 import React from 'react';
 
-const AdditionalFeature = props => {
+interface Props {
+  feature: {
+    name: string;
+    price: number;
+  };
+}
+
+const AdditionalFeature = (props: Props) => {
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}

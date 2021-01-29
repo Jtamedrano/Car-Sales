@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Header = props => {
+interface Props {
+  car: {
+    image: string;
+    name: string;
+    price: number;
+  };
+}
+
+const Header = (props: Props) => {
   return (
     <>
       <figure className="image is-128x128">

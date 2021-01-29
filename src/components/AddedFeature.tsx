@@ -1,6 +1,12 @@
 import React from 'react';
 
-const AddedFeature = props => {
+interface Props {
+  feature: {
+    name: string;
+  };
+}
+
+const AddedFeature = (props: Props) => {
   return (
     <li>
       {/* Add an onClick to run a function to remove a feature */}
