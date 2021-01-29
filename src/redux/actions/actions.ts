@@ -14,4 +14,5 @@ export const addFeatureToSelectedVehicle = (
     type: ActionTypes.REMOVE_FEATURE_FROM_ADDITIONAL_FEATURES,
     payload,
   });
+  dispatch({ type: ActionTypes.RECALCULATE_PRICE });
 };

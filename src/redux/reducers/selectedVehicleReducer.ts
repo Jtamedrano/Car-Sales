@@ -1,4 +1,4 @@
-import { SelectedVehicle } from '../../types';
+import { Feature, SelectedVehicle } from '../../types';
 import { ActionTypes } from '../actions';
 
 const initialState: SelectedVehicle = {
@@ -18,6 +18,22 @@ const initialState: SelectedVehicle = {
   ],
 };
 
+/**
+  @params originalPrice is the price of the vehicle
+  @params features is an array of features added to the vehicle
+
+  adds both together to recalculate the total price with features added/removed
+*/
+const calcTotalPriceWithFeatures = (
+  originalPrice: number,
+  features: Feature[]
+) => {
+  const totalFeaturePrice: number = features
+    .map((feature) => feature.price)
+    .reduce((pV, cV) => pV + cV, 0);
+  return originalPrice + totalFeaturePrice;
+};
+
 const selectedVehicleReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ActionTypes.ADD_FEATURE_TO_CAR:
@@ -34,6 +50,17 @@ const selectedVehicleReducer = (state = initialState, action: any) => {
         (features) => features.id !== action.payload.id
       );
       return { ...state, additionalFeatures };
+    case ActionTypes.RECALCULATE_PRICE:
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          price: calcTotalPriceWithFeatures(
+            state.car.price,
+            state.car.features
+          ),
+        },
+      };
     default:
       return state;
   }
