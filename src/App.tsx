@@ -4,13 +4,16 @@ import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
+import { useSelector } from 'react-redux';
+import { State } from './types';
 
-import { SelectedVehicle } from './types';
-import { connect } from 'react-redux';
+interface Props {}
 
-interface Props extends SelectedVehicle {}
+const App = (props: Props) => {
+  const { car, additionalPrice, additionalFeatures } = useSelector(
+    (state: State) => state.selectedVehicle
+  );
 
-const App = ({ car, additionalFeatures, additionalPrice }: Props) => {
   return (
     <div className="boxes">
       <div className="box">
@@ -25,18 +28,4 @@ const App = ({ car, additionalFeatures, additionalPrice }: Props) => {
   );
 };
 
-const mapStateToProps = ({
-  selectedVehicle,
-}: {
-  selectedVehicle: SelectedVehicle;
-}): SelectedVehicle => {
-  return {
-    car: selectedVehicle.car,
-    additionalFeatures: selectedVehicle.additionalFeatures,
-    additionalPrice: selectedVehicle.additionalPrice,
-  };
-};
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

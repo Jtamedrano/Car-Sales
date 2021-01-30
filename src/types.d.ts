@@ -1,3 +1,12 @@
+export interface State {
+  selectedVehicle: SelectedVehicle;
+}
+
+export interface Action {
+  type: number | string;
+  payload?: any;
+}
+
 export interface Product {
   name: string;
   price: number;
