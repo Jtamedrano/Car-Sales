@@ -1,6 +1,6 @@
 import { ActionTypes } from './actionTypes';
 
-import { Feature } from '../../types';
+import { Feature, SelectedVehicle } from '../../types';
 
 export const addFetToAddFeat = (payload: Feature) => {
   return {
@@ -29,6 +29,13 @@ export const remFetFromCar = (payload: Feature) => {
 export const recalcAddPrice = () => {
   return {
     type: ActionTypes.RECALCULATE_ADDITIONAL_PRICE,
+  };
+};
+export const setSelectedVehicle = (vehicle: SelectedVehicle) => {
+  console.log('setSelectedVehicle set to:', vehicle);
+  return {
+    type: ActionTypes.SET_SELECTED_VEHICLE,
+    payload: vehicle,
   };
 };
 

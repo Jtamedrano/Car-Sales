@@ -1,3 +1,4 @@
+import { SelectedVehicle } from '../../types';
 import { ActionTypes } from '../actions';
 import selectedVehicleReducer from './selectedVehicleReducer';
 
@@ -19,7 +20,7 @@ const initialState = {
 };
 
 it('reducer should return initial state', () => {
-  expect(selectedVehicleReducer(undefined, { type: null })).toEqual(
+  expect(selectedVehicleReducer(initialState, { type: '' })).toEqual(
     initialState
   );
 });
@@ -35,8 +36,8 @@ it('Should add a new feature to car.feature', () => {
   ).toEqual([carFeaturePayload]);
 });
 it('Should remove a new feature to car.feature', () => {
-  const test = initialState;
-  test.car.features = [carFeaturePayload];
+  const test: SelectedVehicle = initialState;
+  test.car.features = [...test.car.features, carFeaturePayload];
   expect(
     selectedVehicleReducer(test, {
       type: ActionTypes.REMOVE_FEATURE_FROM_CAR,

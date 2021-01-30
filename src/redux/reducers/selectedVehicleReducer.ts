@@ -5,18 +5,12 @@ import { ActionTypes } from '../actions';
 const initialState: SelectedVehicle = {
   additionalPrice: 0,
   car: {
-    price: 26395,
-    name: '2019 Ford Mustang',
-    image:
-      'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
+    price: 0,
+    name: '',
+    image: '',
     features: [],
   },
-  additionalFeatures: [
-    { id: 1, name: 'V-6 engine', price: 1500 },
-    { id: 2, name: 'Racing detail package', price: 1500 },
-    { id: 3, name: 'Premium sound system', price: 500 },
-    { id: 4, name: 'Rear spoiler', price: 250 },
-  ],
+  additionalFeatures: [],
 };
 
 const selectedVehicleReducer = (
@@ -60,6 +54,13 @@ const selectedVehicleReducer = (
         additionalPrice: state.car.features
           .map((f) => f.price)
           .reduce((pV, cV) => pV + cV, 0),
+      };
+
+    case ActionTypes.SET_SELECTED_VEHICLE:
+      return {
+        additionalFeatures: action.payload.additionalFeatures,
+        car: action.payload.car,
+        additionalPrice: action.payload.additionalPrice,
       };
 
     default:

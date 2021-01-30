@@ -34,8 +34,43 @@ body {
     }
   }
 }
+
+.boxes.group {
+  grid-template-rows: repeat(1, minmax(350px, 1fr));
+  .box {
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0;
+    position: relative;
+    & .image.is-128x128 {
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0));
+      position: absolute;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    & h2, & p {
+      z-index: 1;
+      text-shadow: 0 0 10px #fff;
+      font-weight: 600;
+    }
+    & p {
+      color: #222;
+      font-size: 1.5rem;
+    }
+    & h2 {
+      font-size: 2rem;
+    }
+  }
+}
+
 .button {
-  background: hotpink;
+  background: #222;
   border: 1px solid transparent;
   color: white;
   margin-right: 1em;
@@ -43,7 +78,10 @@ body {
   transition: all .25s ease-in;
   &:hover {
     background: white;
-    border: 1px solid hotpink;
-    color: #333;
+    border: 1px solid #222;
+    color: #222;
+  }
+  &:focus, &:active {
+    border: none;
   }
 }

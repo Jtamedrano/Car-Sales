@@ -1,29 +1,55 @@
 import React from 'react';
-
-import Header from './components/Header';
-import AddedFeatures from './components/AddedFeatures';
-import AdditionalFeatures from './components/AdditionalFeatures';
-import Total from './components/Total';
-import { useSelector } from 'react-redux';
-import { State } from './types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect, Route } from 'react-router-dom';
+import { SelectedVehicle, State } from './types';
+import { SelectVehicle, Home } from './components';
+import { Button } from './components/custom_comps';
+import { setSelectedVehicle } from './redux/actions';
 
 interface Props {}
 
-const App = (props: Props) => {
-  const { car, additionalPrice, additionalFeatures } = useSelector(
-    (state: State) => state.selectedVehicle
-  );
+const nullVehicle: SelectedVehicle = {
+  additionalFeatures: [],
+  additionalPrice: 0,
+  car: {
+    features: [],
+    image: '',
+    name: '',
+    price: 0,
+  },
+};
 
+const App = (props: Props) => {
+  const hasVehicle = useSelector(
+    (state: State) => state.selectedVehicle.car.name !== ''
+  );
+  const dispatch = useDispatch();
   return (
-    <div className="boxes">
-      <div className="box">
-        <Header car={car} />
-        <AddedFeatures car={car} />
-      </div>
-      <div className="box">
-        <AdditionalFeatures additionalFeatures={additionalFeatures} />
-        <Total car={car} additionalPrice={additionalPrice} />
-      </div>
+    <div>
+      <Route path="/vehicle">
+        {!hasVehicle ? (
+          <Redirect to="/" />
+        ) : (
+          <>
+            <nav>
+              <Link to="/">
+                <Button click={() => dispatch(setSelectedVehicle(nullVehicle))}>
+                  Back
+                </Button>
+              </Link>
+            </nav>
+            <SelectVehicle />
+          </>
+        )}
+      </Route>
+      <Route
+        exact
+        path="/"
+        render={(props) => {
+          if (hasVehicle) return <Redirect to="/vehicle" />;
+          else return <Home />;
+        }}
+      />
     </div>
   );
 };

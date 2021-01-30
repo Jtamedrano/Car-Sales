@@ -1,13 +1,13 @@
 import React, { MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { addFeatureToSelectedVehicle } from '../redux/actions';
-import { Feature } from '../types';
+import { addFeatureToSelectedVehicle } from '../../redux/actions';
+import { Feature } from '../../types';
 
 interface Props {
   feature: Feature;
 }
 
-const AdditionalFeature = ({ feature }: Props) => {
+export const AdditionalFeature = ({ feature }: Props) => {
   const dispatch = useDispatch();
 
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -24,5 +24,3 @@ const AdditionalFeature = ({ feature }: Props) => {
     </li>
   );
 };
-
-export default AdditionalFeature;

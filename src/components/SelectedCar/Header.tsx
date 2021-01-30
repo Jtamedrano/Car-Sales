@@ -8,7 +8,7 @@ interface Props {
   };
 }
 
-const Header = (props: Props) => {
+export const Header = (props: Props) => {
   return (
     <>
       <figure className="image is-128x128">
@@ -19,5 +19,3 @@ const Header = (props: Props) => {
     </>
   );
 };
-
-export default Header;

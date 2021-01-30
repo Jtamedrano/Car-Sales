@@ -7,12 +7,10 @@ interface Props {
   additionalPrice: number;
 }
 
-const Total = (props: Props) => {
+export const Total = (props: Props) => {
   return (
     <div className="content">
       <h4>Total Amount: ${props.car.price + props.additionalPrice}</h4>
     </div>
   );
 };
-
-export default Total;

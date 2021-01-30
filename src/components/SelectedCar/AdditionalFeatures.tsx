@@ -1,12 +1,12 @@
 import React from 'react';
-import { Feature } from '../types';
-import AdditionalFeature from './AdditionalFeature';
+import { Feature } from '../../types';
+import { AdditionalFeature } from './AdditionalFeature';
 
 interface Props {
   additionalFeatures: Feature[];
 }
 
-const AdditionalFeatures = (props: Props) => {
+export const AdditionalFeatures = (props: Props) => {
   return (
     <div className="content">
       <h4>Additional Features</h4>
@@ -22,5 +22,3 @@ const AdditionalFeatures = (props: Props) => {
     </div>
   );
 };
-
-export default AdditionalFeatures;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddedFeature from './AddedFeature';
+import { AddedFeature } from './';
 
 interface Props {
   car: {
@@ -8,7 +8,7 @@ interface Props {
   };
 }
 
-const AddedFeatures = (props: Props) => {
+export const AddedFeatures = (props: Props) => {
   return (
     <div className="content">
       <h6>Added features:</h6>
@@ -24,5 +24,3 @@ const AddedFeatures = (props: Props) => {
     </div>
   );
 };
-
-export default AddedFeatures;
